@@ -1,0 +1,457 @@
+/**
+ * Sports Section CSS - FIFA World Cup 2026 Premium Design
+ * Author: Senior WordPress Theme Developer & UI/UX Designer
+ * Standard: WordPress Coding Standards & BEM CSS Naming
+ */
+
+/* Color & Styling Design System */
+:root {
+    --sports-bg-gradient: linear-gradient(135deg, #020612 0%, #051026 50%, #0a1b3d 100%);
+    --sports-card-bg: #071022;
+    --sports-card-bg-hover: #0c1a36;
+    --sports-border-color: rgba(255, 255, 255, 0.08);
+    
+    --sports-text-primary: #ffffff;
+    --sports-text-secondary: #a3b3cc;
+    --sports-accent-gold: #F4C542;
+    --sports-accent-gold-hover: #ffd764;
+    --sports-live-red: #ff3b30;
+    
+    --sports-border-radius: 12px;
+    --sports-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    --sports-shadow-hover: 0 12px 30px rgba(244, 197, 66, 0.15);
+    
+    --sports-transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --sports-font-family: 'Hind Siliguri', 'SolaimanLipi', sans-serif;
+}
+
+/* Wrapper Section - Applied directly to existing ID */
+#sports-news {
+    background: var(--sports-bg-gradient);
+    /* Subtle tactical sports field grid pattern */
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    font-family: var(--sports-font-family);
+    color: var(--sports-text-primary);
+    overflow: hidden;
+    position: relative;
+    border-radius: var(--sports-border-radius);
+    box-shadow: var(--sports-shadow);
+}
+
+/* Background Glowing Elements */
+#sports-news::before,
+#sports-news::after {
+    content: '';
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(244, 197, 66, 0.06) 0%, rgba(2, 6, 18, 0) 70%);
+    z-index: 0;
+    pointer-events: none;
+}
+#sports-news::before {
+    top: -80px;
+    left: -80px;
+}
+#sports-news::after {
+    bottom: -80px;
+    right: -80px;
+}
+
+.sports-section-inner {
+    padding: 25px 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Header Design */
+.sports-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 15px;
+}
+
+.sports-header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.sports-trophy-icon {
+    width: 28px;
+    height: 28px;
+    fill: var(--sports-accent-gold);
+    filter: drop-shadow(0 0 6px rgba(244, 197, 66, 0.4));
+    animation: floatTrophy 3s ease-in-out infinite;
+}
+
+.sports-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--sports-text-primary);
+    margin: 0;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(180deg, #ffffff 0%, #dbe4ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.sports-title a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Live Badge Styling */
+.sports-live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(255, 59, 48, 0.12);
+    border: 1px solid rgba(255, 59, 48, 0.25);
+    border-radius: 20px;
+    padding: 3px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #ff453a;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.sports-live-dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--sports-live-red);
+    border-radius: 50%;
+    box-shadow: 0 0 0 rgba(255, 59, 48, 0.3);
+    animation: pulseDot 1.5s infinite;
+}
+
+/* View All Button */
+.sports-view-all {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    border: 1px solid rgba(244, 197, 66, 0.25);
+    color: var(--sports-accent-gold);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: var(--sports-transition-smooth);
+}
+
+.sports-view-all:hover {
+    background: var(--sports-accent-gold);
+    color: #020612;
+    border-color: var(--sports-accent-gold);
+    box-shadow: 0 0 10px rgba(244, 197, 66, 0.3);
+    transform: translateY(-1px);
+}
+
+.sports-view-all i {
+    font-size: 11px;
+    transition: var(--sports-transition-smooth);
+}
+
+.sports-view-all:hover i {
+    transform: translateX(3px);
+}
+
+/* Common Card Rules - Solid realistic card styling */
+.sports-card {
+    background: var(--sports-card-bg);
+    border: 1px solid var(--sports-border-color);
+    border-top: 3px solid var(--sports-accent-gold); /* Gold top-border for sports branding */
+    border-radius: var(--sports-border-radius);
+    box-shadow: var(--sports-shadow);
+    overflow: hidden;
+    position: relative;
+    transition: var(--sports-transition-smooth);
+    opacity: 0;
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+.sports-card:hover {
+    transform: translateY(-5px);
+    background: var(--sports-card-bg-hover);
+    border-color: var(--sports-accent-gold);
+    box-shadow: var(--sports-shadow-hover);
+}
+
+.sports-image-container {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16/10;
+}
+
+.sports-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--sports-transition-smooth);
+}
+
+.sports-card:hover .sports-image-container img {
+    transform: scale(1.05);
+}
+
+.sports-card a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Center Featured Card - Shorter realistic height */
+.sports-card-large {
+    height: 100%;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.sports-card-large .sports-image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+}
+
+.sports-card-large .sports-gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(2, 6, 18, 0) 35%, rgba(2, 6, 18, 0.6) 65%, rgba(2, 6, 18, 0.95) 100%);
+    z-index: 2;
+}
+
+.sports-card-large .sports-card-body {
+    position: relative;
+    z-index: 3;
+    padding: 20px;
+    width: 100%;
+}
+
+.sports-title-large {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.35;
+    margin-bottom: 8px;
+    color: var(--sports-text-primary);
+    transition: var(--sports-transition-smooth);
+}
+
+.sports-title-large:hover {
+    color: var(--sports-accent-gold);
+}
+
+.sports-excerpt {
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--sports-text-secondary);
+    margin-bottom: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Breaking News Badge */
+.sports-badge-breaking {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: var(--sports-accent-gold);
+    color: #020612;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 3;
+    box-shadow: 0 2px 8px rgba(244, 197, 66, 0.2);
+}
+
+/* Small Cards (Left & Right columns) */
+.sports-card-small {
+    margin-bottom: 16px;
+}
+
+.sports-card-small:last-child {
+    margin-bottom: 0;
+}
+
+.sports-card-small .sports-image-container {
+    aspect-ratio: 16/9;
+}
+
+.sports-card-small .sports-card-body {
+    padding: 12px;
+}
+
+.sports-title-small {
+    font-size: 14.5px;
+    font-weight: 600;
+    line-height: 1.4;
+    margin: 0;
+    color: var(--sports-text-primary);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: var(--sports-transition-smooth);
+}
+
+.sports-title-small:hover {
+    color: var(--sports-accent-gold);
+}
+
+/* Below Row Cards (4 premium cards) */
+.sports-card-premium {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.sports-card-premium .sports-image-container {
+    aspect-ratio: 16/10;
+}
+
+.sports-card-premium .sports-card-body {
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.sports-title-premium {
+    font-size: 14.5px;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 8px;
+    color: var(--sports-text-primary);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: var(--sports-transition-smooth);
+}
+
+.sports-title-premium:hover {
+    color: var(--sports-accent-gold);
+}
+
+.sports-excerpt-premium {
+    font-size: 12.5px;
+    line-height: 1.45;
+    color: var(--sports-text-secondary);
+    margin-bottom: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-top: auto;
+}
+
+/* Animations */
+@keyframes pulseDot {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(255, 59, 48, 0.6);
+    }
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 5px rgba(255, 59, 48, 0);
+    }
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(255, 59, 48, 0);
+    }
+}
+
+@keyframes floatTrophy {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-3px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Staggered entry delays */
+.sports-stagger-1 { animation-delay: 0.05s; }
+.sports-stagger-2 { animation-delay: 0.1s; }
+.sports-stagger-3 { animation-delay: 0.15s; }
+.sports-stagger-4 { animation-delay: 0.2s; }
+.sports-stagger-5 { animation-delay: 0.25s; }
+.sports-stagger-6 { animation-delay: 0.3s; }
+.sports-stagger-7 { animation-delay: 0.35s; }
+.sports-stagger-8 { animation-delay: 0.4s; }
+.sports-stagger-9 { animation-delay: 0.45s; }
+
+/* Responsive adjustments */
+@media (max-width: 1199px) {
+    .sports-card-large {
+        min-height: 350px;
+    }
+    .sports-title-large {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 991px) {
+    .sports-header {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+    .sports-header-left {
+        width: 100%;
+        justify-content: space-between;
+    }
+    .sports-view-all {
+        align-self: flex-start;
+    }
+}
+
+@media (max-width: 575px) {
+    .sports-card-large {
+        min-height: 300px;
+    }
+    .sports-card-large .sports-card-body {
+        padding: 15px;
+    }
+    .sports-title-large {
+        font-size: 16px;
+    }
+    .sports-excerpt {
+        font-size: 12.5px;
+    }
+}

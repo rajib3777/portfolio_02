@@ -1,0 +1,154 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
+
+@theme {
+  --color-accent: var(--accent-color);
+  --color-accent-glow: var(--accent-glow);
+  
+  --color-dark-bg: #050508;
+  --color-dark-card: #0B0B12;
+  --color-dark-border: rgba(255, 255, 255, 0.07);
+  --color-dark-text: #F3F4F6;
+  --color-dark-muted: #9CA3AF;
+  
+  --font-sans: 'Outfit', 'Inter', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+  
+  --animate-grain: grain 8s steps(10) infinite;
+  --animate-drift: drift 20s ease-in-out infinite;
+
+  @keyframes grain {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(-2%, -8%); }
+    20% { transform: translate(-8%, 2%); }
+    30% { transform: translate(4%, -10%); }
+    40% { transform: translate(-4%, 8%); }
+    50% { transform: translate(-10%, 4%); }
+    60% { transform: translate(8%, 4%); }
+    70% { transform: translate(4%, 8%); }
+    80% { transform: translate(-8%, 4%); }
+    90% { transform: translate(6%, -4%); }
+  }
+  @keyframes drift {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -50px) scale(1.15); }
+    66% { transform: translate(-40px, 20px) scale(0.9); }
+  }
+}
+
+/* Base style resets */
+html, body {
+  background-color: #030306;
+  color: #F3F4F6;
+  font-family: 'Outfit', 'Inter', sans-serif;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Custom premium scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #050508;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-color);
+}
+
+/* Procedural Noise Overlay */
+.noise-overlay {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  width: 200%;
+  height: 200%;
+  background: transparent url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E") repeat;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+/* Custom premium styles */
+.glass-panel {
+  background: rgba(11, 11, 18, 0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.glass-panel-hover {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel-hover:hover {
+  background: rgba(15, 15, 24, 0.85);
+  border-color: rgba(var(--accent-rgb), 0.4);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px var(--accent-glow);
+  transform: translateY(-2px);
+}
+
+/* Hide default cursor on desktop when mouse follower is active */
+@media (min-width: 1024px) {
+  .custom-cursor-active {
+    cursor: none;
+  }
+  .custom-cursor-active a, 
+  .custom-cursor-active button,
+  .custom-cursor-active [role="button"] {
+    cursor: none;
+  }
+}
+
+/* Magnetic Button utility styling */
+.magnetic-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Animated gradient lighting background */
+.gradient-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+/* Swiper overrides for premium sliders */
+.swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.2) !important;
+  opacity: 1 !important;
+}
+.swiper-pagination-bullet-active {
+  background: var(--accent-color) !important;
+  width: 24px !important;
+  border-radius: 4px !important;
+  transition: all 0.3s ease !important;
+}
+
+/* SplitType typography reveal utility */
+.char {
+  display: inline-block;
+  transform: translateY(105%);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.word {
+  overflow: hidden;
+  display: inline-flex;
+  vertical-align: top;
+}
+.line-reveal {
+  overflow: hidden;
+}
