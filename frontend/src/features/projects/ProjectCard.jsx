@@ -29,78 +29,85 @@ export const ProjectCard = ({ project }) => {
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       onMouseEnter={handleMouseEnter}
-      className="glass-panel glass-panel-hover rounded-3xl overflow-hidden flex flex-col h-full border border-dark-border group"
+      className="glass-panel glass-panel-hover rounded-3xl overflow-hidden flex flex-col h-full border border-dark-border group relative"
       data-cursor="view"
       data-cursor-text="PREVIEW"
     >
-      {/* Thumbnail Container */}
-      <div className="relative aspect-video overflow-hidden border-b border-dark-border">
-        {project.thumbnail ? (
-          <img
-            src={project.thumbnail}
-            alt={project.title}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            loading="lazy"
-          />
-        ) : (
-          <div className="w-full h-full bg-gradient-to-br from-accent/10 to-transparent flex items-center justify-center text-accent/40 font-mono text-sm">
-            {project.title} Image
-          </div>
-        )}
-        
-        {/* Hover Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-dark-bg/85 via-dark-bg/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4 justify-between" />
-        
-        {/* Status Badge */}
-        <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md border border-white/10 px-3 py-1 rounded-full text-[10px] font-bold font-mono text-gray-300 uppercase tracking-widest">
-          {project.project_status}
-        </div>
-
-        {/* Version Badge */}
-        <div className="absolute top-4 right-4 bg-accent/20 backdrop-blur-md border border-accent/30 px-3 py-1 rounded-full text-[10px] font-bold font-mono text-accent uppercase tracking-widest">
-          {project.version}
-        </div>
-      </div>
-
-      {/* Info Content */}
-      <div className="p-6 flex flex-col flex-grow">
-        {/* Category & Status */}
-        <span className="text-[10px] font-bold font-mono text-accent uppercase tracking-widest">
-          {project.category}
-        </span>
-        
-        <h3 className="text-xl font-bold mt-2 text-white group-hover:text-accent transition-colors duration-300 flex items-center justify-between">
-          <Link to={`/project/${project.slug}`} className="focus:outline-none">
-            {project.title}
-          </Link>
-          <FiArrowUpRight className="opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-x-1 group-hover:-translate-y-1 text-accent" />
-        </h3>
-
-        <p className="text-sm text-gray-400 mt-3 flex-grow line-clamp-3">
-          {project.short_description}
-        </p>
-
-        {/* Technologies tags */}
-        <div className="flex flex-wrap gap-1.5 mt-4">
-          {project.technologies?.slice(0, 4).map((tech) => (
-            <span
-              key={tech}
-              className="text-[10px] font-mono bg-white/5 border border-white/5 text-gray-300 px-2 py-0.5 rounded"
-            >
-              {tech}
-            </span>
-          ))}
-          {project.technologies?.length > 4 && (
-            <span className="text-[10px] font-mono text-accent px-1 py-0.5">
-              +{project.technologies.length - 4}
-            </span>
+      {/* Link wrapping thumbnail and main info to make the entire card body clickable */}
+      <Link 
+        to={`/project/${project.slug}`} 
+        className="flex flex-col flex-grow focus:outline-none" 
+        data-cursor="pointer"
+      >
+        {/* Thumbnail Container */}
+        <div className="relative aspect-video overflow-hidden border-b border-dark-border">
+          {project.thumbnail ? (
+            <img
+              src={project.thumbnail}
+              alt={project.title}
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              loading="lazy"
+            />
+          ) : (
+            <div className="w-full h-full bg-gradient-to-br from-accent/10 to-transparent flex items-center justify-center text-accent/40 font-mono text-sm">
+              {project.title} Image
+            </div>
           )}
+          
+          {/* Hover Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-dark-bg/85 via-dark-bg/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4 justify-between" />
+          
+          {/* Status Badge */}
+          <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md border border-white/10 px-3 py-1 rounded-full text-[10px] font-bold font-mono text-gray-300 uppercase tracking-widest">
+            {project.project_status}
+          </div>
+
+          {/* Version Badge */}
+          <div className="absolute top-4 right-4 bg-accent/20 backdrop-blur-md border border-accent/30 px-3 py-1 rounded-full text-[10px] font-bold font-mono text-accent uppercase tracking-widest">
+            {project.version}
+          </div>
         </div>
 
-        {/* Divider */}
-        <div className="h-[1px] bg-white/5 my-4" />
+        {/* Info Content */}
+        <div className="p-6 flex flex-col flex-grow">
+          {/* Category */}
+          <span className="text-[10px] font-bold font-mono text-accent uppercase tracking-widest">
+            {project.category}
+          </span>
+          
+          <h3 className="text-xl font-bold mt-2 text-white group-hover:text-accent transition-colors duration-300 flex items-center justify-between">
+            <span>{project.title}</span>
+            <FiArrowUpRight className="opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-x-1 group-hover:-translate-y-1 text-accent flex-shrink-0 ml-2" />
+          </h3>
 
-        {/* Metrics Row */}
+          <p className="text-sm text-gray-400 mt-3 flex-grow line-clamp-3">
+            {project.short_description}
+          </p>
+
+          {/* Technologies tags */}
+          <div className="flex flex-wrap gap-1.5 mt-4">
+            {project.technologies?.slice(0, 4).map((tech) => (
+              <span
+                key={tech}
+                className="text-[10px] font-mono bg-white/5 border border-white/5 text-gray-300 px-2 py-0.5 rounded"
+              >
+                {tech}
+              </span>
+            ))}
+            {project.technologies?.length > 4 && (
+              <span className="text-[10px] font-mono text-accent px-1 py-0.5">
+                +{project.technologies.length - 4}
+              </span>
+            )}
+          </div>
+        </div>
+      </Link>
+
+      {/* Metrics & Action Row (Kept outside Link to avoid nested anchor tag warnings) */}
+      <div className="px-6 pb-6 mt-auto">
+        {/* Divider */}
+        <div className="h-[1px] bg-white/5 mb-4" />
+
         <div className="flex justify-between items-center text-xs font-mono">
           <div className="flex gap-4">
             <div className="flex flex-col">
@@ -129,8 +136,10 @@ export const ProjectCard = ({ project }) => {
                 href={project.github_link}
                 target="_blank"
                 rel="noreferrer"
-                className="text-gray-500 hover:text-white transition-colors"
+                className="text-gray-500 hover:text-white transition-colors relative z-10 p-1"
                 title="Github repository"
+                data-cursor="pointer"
+                onClick={(e) => e.stopPropagation()}
               >
                 <FiGithub size={15} />
               </a>
@@ -140,8 +149,10 @@ export const ProjectCard = ({ project }) => {
                 href={project.demo_link}
                 target="_blank"
                 rel="noreferrer"
-                className="text-gray-500 hover:text-white transition-colors"
+                className="text-gray-500 hover:text-white transition-colors relative z-10 p-1"
                 title="Live preview"
+                data-cursor="pointer"
+                onClick={(e) => e.stopPropagation()}
               >
                 <FiExternalLink size={15} />
               </a>
@@ -152,4 +163,5 @@ export const ProjectCard = ({ project }) => {
     </motion.div>
   );
 };
+
 export default ProjectCard;
