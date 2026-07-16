@@ -12,10 +12,10 @@ const CountUpComponent = CountUp?.default ?? CountUp;
 
 const TYPING_TITLES = [
   'Full Stack Developer',
-  'Django Architect',
+  'Django REST Expert',
   'React.js Engineer',
-  'API Designer',
-  'Automation Builder',
+  'Python Automation Builder',
+  'API & Backend Architect',
 ];
 
 const TypingEffect = () => {
@@ -133,7 +133,7 @@ export const HeroSection = () => {
               Hi, I'm{' '}
               <span className="relative inline-block">
                 <span className="relative z-10">
-                  {profile?.full_name?.split(' ')[0] || 'Rajibul'}
+                  {profile?.full_name?.split(' ')[0] || 'Shuvo'}
                 </span>
                 <motion.span
                   initial={{ scaleX: 0 }}
@@ -168,7 +168,7 @@ export const HeroSection = () => {
               style={{ color: 'rgba(255,255,255,0.5)', fontSize: '1rem' }}
             >
               {profile?.bio_summary ||
-                'Full-Stack Developer specializing in Django, React.js, and PostgreSQL. Building production-ready software with precision and craft.'}
+                'Full Stack Developer from Bangladesh specializing in Django, React.js & PostgreSQL — building scalable production software with precision.'}
             </motion.p>
 
             {/* CTA Buttons */}
