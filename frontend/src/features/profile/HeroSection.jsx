@@ -275,11 +275,28 @@ export const HeroSection = () => {
                 style={{ inset: 8, borderRadius: '1.5rem' }}
               >
                 {settings?.profile_image ? (
-                  <img
-                    src={settings.profile_image}
-                    alt={profile?.full_name}
-                    className="w-full h-full object-cover"
-                  />
+                  <div className="relative w-full h-full group">
+                    <img
+                      src={settings.profile_image}
+                      alt={profile?.full_name}
+                      className="w-full h-full object-cover grayscale-[20%] transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0"
+                    />
+                    {/* Premium color grading overlays matching active website accents */}
+                    <div 
+                      className="absolute inset-0 pointer-events-none opacity-40 transition-opacity duration-500 group-hover:opacity-20"
+                      style={{
+                        background: 'linear-gradient(to bottom, var(--accent-glow) 0%, transparent 80%)',
+                        mixBlendMode: 'color'
+                      }}
+                    />
+                    <div 
+                      className="absolute inset-0 pointer-events-none opacity-25 transition-opacity duration-500 group-hover:opacity-10"
+                      style={{
+                        background: 'var(--accent-color)',
+                        mixBlendMode: 'overlay'
+                      }}
+                    />
+                  </div>
                 ) : (
                   <div
                     className="w-full h-full flex flex-col items-center justify-center gap-3"
