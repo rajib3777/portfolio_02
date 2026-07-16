@@ -35,7 +35,7 @@ export const Navbar = () => {
       <div className="max-w-7xl mx-auto flex items-center justify-between glass-panel px-6 py-3 rounded-full border border-dark-border shadow-xl">
         {/* Logo */}
         <Link to="/" className="text-xl font-bold tracking-tight text-white font-sans" data-cursor="pointer">
-          AR<span className="text-accent">.</span>
+          RS<span className="text-accent">.</span>
         </Link>
 
         {/* Desktop Links */}

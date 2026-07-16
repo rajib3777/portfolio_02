@@ -15,10 +15,10 @@ export const Footer = () => {
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
         <div>
           <h3 className="text-2xl font-bold tracking-tight text-white font-sans">
-            AR<span className="text-accent">.</span>
+            RS<span className="text-accent">.</span>
           </h3>
           <p className="text-xs text-gray-500 mt-2 font-mono">
-            Designed & developed by Alex Rivers © {new Date().getFullYear()}
+            Designed & developed by MD. Rajibul Islam Shuvo © {new Date().getFullYear()}
           </p>
         </div>
 
@@ -26,7 +26,7 @@ export const Footer = () => {
         <div className="flex items-center gap-4">
           <Magnet strength={20}>
             <a
-              href="https://github.com"
+              href="https://github.com/rajib3777"
               target="_blank"
               rel="noopener noreferrer"
               data-cursor="pointer"
@@ -59,7 +59,7 @@ export const Footer = () => {
           </Magnet>
           <Magnet strength={20}>
             <a
-              href="mailto:alex.rivers@example.com"
+              href="mailto:rajibulislam3777@gmail.com"
               data-cursor="pointer"
               className="w-10 h-10 rounded-full bg-white/5 border border-dark-border flex items-center justify-center text-gray-400 hover:text-accent hover:border-accent/40 transition-colors"
             >
