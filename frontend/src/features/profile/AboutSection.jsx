@@ -26,11 +26,31 @@ const TimelineItem = ({ year, title, desc, isLast }) => (
 );
 
 const CAREER_JOURNEY = [
-  { year: '2018', title: 'First Line of Code', desc: 'Discovered Python and built my first web scraper. Never looked back.' },
-  { year: '2020', title: 'First Freelance Client', desc: 'Delivered a full Django + Bootstrap dashboard for a local business.' },
-  { year: '2022', title: 'Computer Science Degree', desc: 'Graduated from UC Berkeley with a focus on Computer Graphics and HCI.' },
-  { year: '2023', title: 'Senior Frontend Role', desc: 'Joined StripeCraft Agency, engineering award-winning React interfaces.' },
-  { year: '2024', title: 'Lead Architect @ Aether', desc: 'Leading a team of six engineers building cloud-scale analytics tools.' },
+  { 
+    year: '2023', 
+    title: 'CSE Fundamentals — Phitron', 
+    desc: 'Started a rigorous 2-year software engineering training program covering C, C++, Data Structures, Algorithms, and OOP.' 
+  },
+  { 
+    year: '2025', 
+    title: 'Software Developer Intern — Somadhan Soft', 
+    desc: 'Collaborated on VisaFarm and JobsAlign, developing backend authentication flows and responsive Bootstrap interfaces.' 
+  },
+  { 
+    year: '2025', 
+    title: 'Software Developer — Code Astro', 
+    desc: 'Engineered web platforms (LMS portals, furniture customization, and e-commerce) using React, Django, Celery, and WebSockets.' 
+  },
+  { 
+    year: '2026', 
+    title: 'Automation Engineer — Galaxy TV', 
+    desc: 'Built Python automation scripts and cron jobs to streamline manual scheduling and administrative tasks.' 
+  },
+  { 
+    year: 'Present', 
+    title: 'B.Sc. in CSE — University of Scholars', 
+    desc: 'Currently pursuing Bachelor of Computer Science and Engineering, maintaining a perfect CGPA of 4.00.' 
+  },
 ];
 
 export const AboutSection = () => {
@@ -97,7 +117,7 @@ export const AboutSection = () => {
           <div className="space-y-8">
             {CAREER_JOURNEY.map((item, idx) => (
               <TimelineItem
-                key={item.year}
+                key={`${item.year}-${idx}`}
                 {...item}
                 isLast={idx === CAREER_JOURNEY.length - 1}
               />
