@@ -1,9 +1,9 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
-import { getExperience, getEducation } from '../../services/portfolioService';
+import { getExperience, getEducation, getCertifications } from '../../services/portfolioService';
 import { ScrollReveal } from '../../components/motion/ScrollReveal';
-import { FiExternalLink, FiUsers, FiMapPin, FiBriefcase } from 'react-icons/fi';
+import { FiExternalLink, FiUsers, FiMapPin, FiBriefcase, FiAward } from 'react-icons/fi';
 
 const ExperienceCard = ({ exp, index }) => (
   <motion.div
@@ -107,6 +107,107 @@ const ExperienceCard = ({ exp, index }) => (
   </motion.div>
 );
 
+const CertificationCard = ({ cert, index }) => {
+  const [showModal, setShowModal] = React.useState(false);
+
+  const getMediaUrl = (path) => {
+    if (!path) return '';
+    if (path.startsWith('http')) return path;
+    const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000/api/';
+    const domain = baseUrl.replace('/api/', '');
+    let cleanPath = path;
+    if (!path.startsWith('media/') && !path.startsWith('/media/')) {
+      cleanPath = `media/${path}`;
+    }
+    return `${domain}/${cleanPath.replace(/^\//, '')}`;
+  };
+
+  const imgUrl = getMediaUrl(cert.image);
+
+  return (
+    <>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: index * 0.1 }}
+        className="glass-panel p-6 rounded-3xl border border-dark-border flex flex-col sm:flex-row gap-6 items-start hover:border-accent/40 transition-colors duration-300"
+      >
+        {cert.image ? (
+          <div 
+            onClick={() => setShowModal(true)}
+            className="w-full sm:w-28 h-20 rounded-2xl overflow-hidden border border-white/5 flex-shrink-0 bg-white/5 relative group cursor-zoom-in"
+          >
+            <img 
+              src={imgUrl} 
+              alt={cert.name} 
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+            />
+            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+              <span className="text-[10px] font-mono text-white bg-black/60 px-2 py-1 rounded-full uppercase tracking-wider">Zoom</span>
+            </div>
+          </div>
+        ) : (
+          <div className="w-12 h-12 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent flex-shrink-0">
+            <FiAward size={22} />
+          </div>
+        )}
+
+        <div className="flex-1 min-w-0 w-full">
+          <div className="flex flex-wrap items-start justify-between gap-2">
+            <div>
+              <h3 className="text-base font-bold text-white leading-tight">{cert.name}</h3>
+              <p className="text-sm text-accent font-medium mt-1">{cert.issuing_organization}</p>
+            </div>
+            <span className="text-xs font-mono text-gray-400">{cert.issue_date}</span>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-between gap-4 mt-4 pt-3 border-t border-white/5">
+            {cert.credential_id && (
+              <span className="text-[10px] font-mono text-gray-500">
+                ID: {cert.credential_id}
+              </span>
+            )}
+            {cert.credential_url && (
+              <a
+                href={cert.credential_url}
+                target="_blank"
+                rel="noreferrer"
+                className="text-xs font-bold text-accent hover:text-white flex items-center gap-1 transition-colors"
+                data-cursor="pointer"
+              >
+                Verify <FiExternalLink size={12} />
+              </a>
+            )}
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Lightbox Modal */}
+      {showModal && (
+        <div 
+          className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4 backdrop-blur-md cursor-zoom-out"
+          onClick={() => setShowModal(false)}
+        >
+          <div className="relative max-w-4xl max-h-[85vh] overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
+            <img 
+              src={imgUrl} 
+              alt={cert.name} 
+              className="max-w-full max-h-[85vh] object-contain"
+            />
+            <button 
+              className="absolute top-4 right-4 bg-black/60 hover:bg-black text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors"
+              onClick={() => setShowModal(false)}
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
 const EducationCard = ({ edu, index }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
@@ -149,6 +250,10 @@ export const ExperienceSection = () => {
     queryKey: ['education'],
     queryFn: getEducation,
   });
+  const { data: certifications = [], isLoading: certsLoading } = useQuery({
+    queryKey: ['certifications'],
+    queryFn: getCertifications,
+  });
 
   return (
     <section id="experience" className="py-24 px-6 md:px-12 max-w-7xl mx-auto">
@@ -178,7 +283,7 @@ export const ExperienceSection = () => {
         </h2>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-4 mb-24">
         {eduLoading
           ? Array.from({ length: 1 }).map((_, i) => (
               <div key={i} className="glass-panel rounded-3xl h-32 animate-pulse" />
@@ -187,6 +292,28 @@ export const ExperienceSection = () => {
               <EducationCard key={edu.id} edu={edu} index={idx} />
             ))}
       </div>
+
+      {/* Certifications */}
+      {certifications.length > 0 && (
+        <>
+          <div className="mb-12">
+            <span className="text-xs uppercase font-mono font-bold tracking-widest text-accent">Credentials</span>
+            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white mt-2">
+              <ScrollReveal type="words">Certifications</ScrollReveal>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {certsLoading
+              ? Array.from({ length: 2 }).map((_, i) => (
+                  <div key={i} className="glass-panel rounded-3xl h-36 animate-pulse" />
+                ))
+              : certifications.map((cert, idx) => (
+                  <CertificationCard key={cert.id} cert={cert} index={idx} />
+                ))}
+          </div>
+        </>
+      )}
     </section>
   );
 };
