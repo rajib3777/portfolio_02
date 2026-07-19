@@ -68,7 +68,7 @@ if ( ! function_exists( 'render_premium_sports_portal' ) ) {
                 background: radial-gradient(circle at 50% 0%, #0d1e36 0%, #060b13 100%);
                 border-radius: 12px;
                 padding: 25px;
-                color: #ffffff !important;
+                color: #ffffff;
                 font-family: 'SolaimanLipi', Arial, sans-serif;
                 box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
                 margin-bottom: 25px;
@@ -87,7 +87,7 @@ if ( ! function_exists( 'render_premium_sports_portal' ) ) {
                 gap: 10px;
             }
             .sports-icon {
-                color: #ffd700 !important;
+                color: #ffd700;
                 font-size: 24px;
                 animation: trophy-glow 2s infinite ease-in-out;
             }
@@ -98,7 +98,7 @@ if ( ! function_exists( 'render_premium_sports_portal' ) ) {
             .sports-title {
                 font-size: 24px;
                 font-weight: 700;
-                color: #ffffff !important;
+                color: #ffffff;
                 margin: 0;
             }
             .sports-more-btn {
@@ -175,19 +175,19 @@ if ( ! function_exists( 'render_premium_sports_portal' ) ) {
                 font-weight: bold;
                 line-height: 1.4;
                 margin-bottom: 10px;
-                color: #ffffff !important;
+                color: #ffffff;
             }
             .sports-card-title a {
-                color: #ffffff !important;
+                color: #ffffff;
                 text-decoration: none;
                 transition: color 0.2s;
             }
             .sports-card-title a:hover {
-                color: #60a5fa !important;
+                color: #60a5fa;
             }
             .sports-card-excerpt {
                 font-size: 13px;
-                color: #94a3b8 !important;
+                color: #94a3b8;
                 line-height: 1.5;
                 margin-bottom: 10px;
             }
@@ -228,30 +228,13 @@ if ( ! function_exists( 'render_premium_sports_portal' ) ) {
                 font-weight: 600;
                 margin: 0;
                 line-height: 1.4;
-                color: #e2e8f0 !important;
             }
             .sports-list-title a {
-                color: #e2e8f0 !important;
+                color: #e2e8f0;
                 text-decoration: none;
             }
             .sports-list-title a:hover {
-                color: #60a5fa !important;
-            }
-
-            /* Prevent global stylesheet overrides from making sports text dark */
-            #sports-news h1, #sports-news h2, #sports-news h3, #sports-news h4, #sports-news h5, #sports-news h6,
-            #sports-news .sports-title, #sports-news .sports-card-title, #sports-news .sports-card-title a,
-            #sports-news .sports-list-title, #sports-news .sports-list-title a, #sports-news a {
-                color: #ffffff !important;
-            }
-            #sports-news .sports-more-btn {
-                color: #ffd700 !important;
-            }
-            #sports-news .sports-more-btn:hover {
-                color: #ffffff !important;
-            }
-            #sports-news .sports-card-title a:hover, #sports-news .sports-list-title a:hover {
-                color: #60a5fa !important;
+                color: #60a5fa;
             }
         </style>
         
@@ -323,7 +306,7 @@ if ( ! function_exists( 'render_premium_sports_portal' ) ) {
                 <!-- Right Column (3 List Items) -->
                 <div class="col-lg-3 col-md-12">
                     <div class="sports-card h-100" style="padding: 15px;">
-                        <h4 style="font-size:16px; border-bottom:1px solid #1e293b; padding-bottom:8px; margin-bottom:12px; color:#60a5fa; border-bottom:1px solid #1e293b;"><i class="fas fa-list"></i> অন্যান্য খবর</h4>
+                        <h4 style="font-size:16px; border-bottom:1px solid #1e293b; padding-bottom:8px; margin-bottom:12px; color:#60a5fa;"><i class="fas fa-list"></i> অন্যান্য খবর</h4>
                         <div class="d-flex flex-column gap-2">
                             <?php foreach ( $right_posts as $p ) : ?>
                                 <div class="sports-list-item">
@@ -374,358 +357,6 @@ if ( ! function_exists( 'render_premium_sports_portal' ) ) {
     }
 }
 ?>
-
-<!-- Premium Enterprise News Portal Homepage Overhaul (CNN/BBC style) -->
-<style>
-/* Clean, Highly Stable Premium Stylesheet (No layout overrides) */
-:root {
-    --brand-red: #dc2626;
-    --brand-blue: #1d4ed8;
-    --dark-charcoal: #1e293b;
-    --text-dark: #0f172a;
-    --text-muted: #334155;
-    --text-light: #64748b;
-    --border-clean: #e2e8f0;
-    --bg-gray: #f8fafc;
-    --bg-white: #ffffff;
-    
-    --font-bengali: 'SolaimanLipi', 'Kalpurush', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-}
-
-body {
-    font-family: var(--font-bengali) !important;
-    background-color: var(--bg-gray) !important;
-    color: var(--text-dark) !important;
-    line-height: 1.65 !important;
-}
-
-/* Headings & Typography */
-h1, h2, h3, h4, h5, h6, .title, .heading-h2 {
-    font-family: var(--font-bengali) !important;
-    color: var(--text-dark) !important;
-    font-weight: 700 !important;
-    line-height: 1.45 !important;
-    margin: 0 !important;
-}
-
-/* Optimized, Safe Font-Sizes for all screens */
-.lead-news h4.title, #lead-news h4.title {
-    font-size: 19px !important;
-    font-weight: 800 !important;
-    margin-bottom: 8px !important;
-}
-
-.news-content-box h5.title, .selected-news-height h5.title, .flex-content h4.title {
-    font-size: 15px !important;
-    font-weight: 700 !important;
-    margin-bottom: 6px !important;
-}
-
-.custom-caption-wrapper .title, .sub2-lead-content .title {
-    font-size: 14px !important;
-    font-weight: 700 !important;
-}
-
-/* Responsive Media Queries to adjust font sizes and stack cards on small screens */
-@media (max-width: 768px) {
-    .lead-news h4.title, #lead-news h4.title {
-        font-size: 17px !important;
-    }
-    .news-content-box h5.title, .selected-news-height h5.title, .flex-content h4.title {
-        font-size: 14px !important;
-    }
-    .custom-caption-wrapper .title, .sub2-lead-content .title {
-        font-size: 13px !important;
-    }
-}
-
-/* Mobile Screen Layout Optimization - Stack 2-column cards to 1-column */
-@media (max-width: 576px) {
-    .sub-news .col-6 {
-        width: 100% !important;
-        flex: 0 0 100% !important;
-        max-width: 100% !important;
-        margin-bottom: 16px !important;
-    }
-}
-
-/* Premium Card Styles ONLY for standalone news cards */
-.common-card-content, .selected-news-height {
-    background: var(--bg-white) !important;
-    border: 1px solid var(--border-clean) !important;
-    border-radius: 8px !important;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.02) !important;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
-    padding: 14px !important;
-    overflow: hidden !important;
-}
-
-.common-card-content:hover, .selected-news-height:hover {
-    transform: translateY(-4px) !important;
-    box-shadow: 0 12px 20px rgba(0,0,0,0.05) !important;
-    border-color: #cbd5e1 !important;
-}
-
-/* Precise styling for category list widgets (sub2-lead-content) */
-.sub2-lead-content {
-    background: transparent !important;
-    border: none !important;
-    border-bottom: 1px solid var(--border-clean) !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-    padding: 10px 0 !important;
-    transition: none !important;
-}
-
-.sub2-lead-content:hover {
-    transform: none !important;
-    box-shadow: none !important;
-}
-
-.sub2-lead-content .title i.fa-arrow-right::before {
-    content: "■" !important; /* Small square indicator */
-    color: var(--brand-red) !important;
-    font-size: 8px !important;
-    margin-right: 6px !important;
-}
-
-/* Category Headers Overhaul */
-.bodymenu-link, .menu-link, #video-gallery .d-flex {
-    border: none !important;
-    border-bottom: 2px solid var(--dark-charcoal) !important;
-    padding: 0 0 10px 0 !important;
-    margin-bottom: 20px !important;
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    background: transparent !important;
-    box-shadow: none !important;
-    border-radius: 0 !important;
-}
-
-.bodymenu-link a, .menu-link a, #video-gallery .d-flex .title a {
-    font-family: var(--font-bengali) !important;
-    font-size: 19px !important;
-    font-weight: 800 !important;
-    color: var(--text-dark) !important;
-    text-decoration: none !important;
-    display: flex !important;
-    align-items: center !important;
-    gap: 8px !important;
-    position: relative !important;
-}
-
-.bodymenu-link a::after, .menu-link a::after, #video-gallery .d-flex .title a::after {
-    content: '' !important;
-    position: absolute !important;
-    bottom: -12px !important;
-    left: 0 !important;
-    width: 60px !important;
-    height: 3px !important;
-    background: var(--brand-red) !important;
-}
-
-.bodymenu-link a img, .menu-link img {
-    width: 24px !important;
-    height: 24px !important;
-    object-fit: contain !important;
-}
-
-.bodymenu-link .float-end, .menu-link .float-end, #video-gallery .d-flex .more a {
-    font-size: 11px !important;
-    font-weight: 700 !important;
-    color: var(--brand-red) !important;
-    background: rgba(225, 29, 72, 0.05) !important;
-    padding: 4px 12px !important;
-    border-radius: 4px !important;
-    text-decoration: none !important;
-    display: flex !important;
-    align-items: center !important;
-    gap: 4px !important;
-    transition: all 0.2s ease !important;
-}
-
-.bodymenu-link:hover .float-end, .menu-link:hover .float-end {
-    background: var(--brand-red) !important;
-    color: #ffffff !important;
-}
-
-/* Image zoom style without changing layout height */
-.imgWrep, .image-lead, .img-content {
-    overflow: hidden !important;
-    position: relative !important;
-    border-radius: 6px !important;
-    display: block !important;
-}
-
-.imgWrep img, .image-lead img, .img-content img {
-    transition: transform 0.4s ease !important;
-    width: 100% !important;
-    height: auto !important;
-    object-fit: cover !important;
-}
-
-.common-card-content:hover .imgWrep img, 
-.common-card-content:hover .image-lead img {
-    transform: scale(1.03) !important;
-}
-
-/* Hover Title Color redirection */
-.common-card-content:hover h5.title, 
-.common-card-content:hover h5.title a,
-.flex-content:hover h4.title,
-.flex-content:hover h4.title a,
-#lead-news:hover h4.title,
-#lead-news:hover h4.title a {
-    color: var(--brand-red) !important;
-}
-
-.summery {
-    font-size: 13px !important;
-    line-height: 1.6 !important;
-    color: var(--text-muted) !important;
-    margin-top: 6px !important;
-}
-
-.time {
-    font-size: 11px !important;
-    font-weight: 600 !important;
-    color: var(--text-light) !important;
-    display: flex !important;
-    align-items: center !important;
-    gap: 4px !important;
-    margin-top: 4px !important;
-}
-
-/* Premium sub-news (list item cards) */
-.custom-sub-news {
-    border: none !important;
-    border-bottom: 1px solid var(--border-clean) !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-    background: transparent !important;
-    margin-bottom: 12px !important;
-    padding: 0 0 12px 0 !important;
-}
-
-.custom-img-wrapper {
-    width: 85px !important;
-    height: 55px !important;
-    border-radius: 4px !important;
-    overflow: hidden !important;
-    border: 1px solid var(--border-clean) !important;
-}
-
-.custom-caption-wrapper .title {
-    font-family: var(--font-bengali) !important;
-    font-size: 13px !important;
-    font-weight: 700 !important;
-}
-
-/* Opinion/Editorial Slide Overhaul */
-#static_opinion {
-    border: 1px solid var(--border-clean) !important;
-    background: #ffffff !important;
-    padding: 20px !important;
-    border-radius: 8px !important;
-}
-
-#static_opinion .flex-content {
-    background: #fffdf9 !important;
-    border: 1px solid #fef3c7 !important;
-    border-left: 4px solid #d97706 !important;
-    border-radius: 6px !important;
-    padding: 14px !important;
-    margin-bottom: 12px !important;
-    box-shadow: none !important;
-}
-
-#static_opinion h4.title {
-    font-size: 14px !important;
-    color: #92400e !important;
-}
-
-/* Online Poll Overhaul */
-#home-online-poll {
-    border: 1px solid var(--border-clean) !important;
-    background: #ffffff !important;
-    padding: 20px !important;
-    border-radius: 8px !important;
-}
-
-#home-online-poll .slides > li {
-    border: 1px solid var(--border-clean) !important;
-    background: var(--bg-gray) !important;
-    border-radius: 6px !important;
-    padding: 16px !important;
-}
-
-.polling_submit_block p {
-    font-size: 15px !important;
-    color: var(--text-dark) !important;
-    font-weight: 700 !important;
-}
-
-.polling_submit_block .options_block ul li > div.title_block {
-    border: 1px solid var(--border-clean) !important;
-    background-color: #ffffff !important;
-    border-radius: 4px !important;
-    height: 34px !important;
-    line-height: 32px !important;
-    font-size: 13px !important;
-}
-
-.polling_submit_block .options_block ul li > div span.progress {
-    background: var(--brand-blue) !important;
-    opacity: 0.15 !important;
-}
-
-.polling_submit_block .submit_btn {
-    background: var(--brand-blue) !important;
-    color: #ffffff !important;
-    border-radius: 20px !important;
-    font-weight: 700 !important;
-    padding: 6px 20px !important;
-    border: none !important;
-}
-
-/* Sidebar Tab Widget */
-.tab_block_stories {
-    border: 1px solid var(--border-clean) !important;
-    background: #ffffff !important;
-    border-radius: 8px !important;
-    padding: 20px !important;
-}
-
-.tab_bar_block_stories ul li.active {
-    color: var(--brand-red) !important;
-    border-bottom: 2px solid var(--brand-red) !important;
-}
-
-/* Sidebar latest/popular tab */
-.latest_popular_tab {
-    border: 1px solid var(--border-clean) !important;
-    background: #ffffff !important;
-    border-radius: 8px !important;
-    padding: 16px !important;
-}
-
-/* Photo and Video Gallery */
-#video-gallery .vid-single {
-    border: 1px solid var(--border-clean) !important;
-    border-radius: 6px !important;
-}
-
-#video-gallery .vid-single i.fa-play-circle {
-    font-size: 36px !important;
-}
-</style>
-
-
-
-
-
-
 
 <?php
 // Check if the shortcode [t4b-ticker] exists

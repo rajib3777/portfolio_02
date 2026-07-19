@@ -83,26 +83,28 @@ export const AboutSection = () => {
           </motion.div>
 
           {/* Quick Meta Info */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-3">
             {[
-              { icon: FiMapPin, label: 'Location', value: profile?.location || '—' },
-              { icon: FiGlobe, label: 'Nationality', value: profile?.nationality || '—' },
-              { icon: FiAward, label: 'Languages', value: profile?.languages?.join(', ') || '—' },
-            ].map(({ icon: Icon, label, value }) => (
+              { icon: FiMapPin, label: 'Location', value: profile?.location || '—', full: false },
+              { icon: FiGlobe, label: 'Nationality', value: profile?.nationality || '—', full: false },
+              { icon: FiAward, label: 'Languages', value: profile?.languages?.join(', ') || '—', full: true },
+            ].map(({ icon: Icon, label, value, full }) => (
               <motion.div
                 key={label}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="glass-panel p-4 rounded-2xl border border-dark-border flex items-start gap-3 col-span-1"
+                className={`glass-panel p-3 rounded-2xl border border-dark-border flex items-start gap-2.5 ${
+                  full ? 'col-span-2' : 'col-span-1'
+                }`}
               >
-                <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center text-accent flex-shrink-0">
-                  <Icon size={15} />
+                <div className="w-7 h-7 rounded-lg bg-accent/10 flex items-center justify-center text-accent flex-shrink-0">
+                  <Icon size={13} />
                 </div>
-                <div>
+                <div className="min-w-0">
                   <div className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">{label}</div>
-                  <div className="text-xs font-bold text-white mt-0.5">{value}</div>
+                  <div className="text-xs font-bold text-white mt-0.5 break-words">{value}</div>
                 </div>
               </motion.div>
             ))}

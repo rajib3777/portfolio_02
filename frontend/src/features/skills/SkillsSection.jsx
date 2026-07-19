@@ -22,11 +22,16 @@ const SkillPill = ({ skill, delay = 0 }) => {
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, margin: '-30px' }}
       transition={{ duration: 0.4, delay, ease: [0.16, 1, 0.3, 1] }}
-      className={`glass-panel border rounded-2xl p-4 flex flex-col gap-3 group hover:scale-[1.02] transition-transform duration-300 ${style.badge}`}
+      className={`glass-panel border rounded-2xl p-3 flex flex-col gap-2 group hover:scale-[1.02] transition-transform duration-300 min-w-0 ${style.badge}`}
     >
-      <div className="flex items-center justify-between">
-        <span className="text-sm font-bold text-white">{skill.name}</span>
-        <span className={`text-[10px] font-mono font-bold uppercase tracking-widest px-2 py-0.5 rounded-full border ${style.badge} ${style.text}`}>
+      {/* Name row — name wraps, badge stays on right */}
+      <div className="flex items-start justify-between gap-2 min-w-0">
+        <span className="text-xs sm:text-sm font-bold text-white leading-snug break-words min-w-0">
+          {skill.name}
+        </span>
+        <span
+          className={`text-[9px] font-mono font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full border whitespace-nowrap flex-shrink-0 mt-0.5 ${style.badge} ${style.text}`}
+        >
           {skill.level}
         </span>
       </div>
@@ -64,11 +69,11 @@ export const SkillsSection = () => {
   }, {});
 
   return (
-    <section id="skills" className="py-24 px-6 md:px-12 max-w-7xl mx-auto">
+    <section id="skills" className="py-24 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto">
       <div className="mb-12">
         <span className="text-xs uppercase font-mono font-bold tracking-widest text-accent">Expertise</span>
-        <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white mt-2">
-          <ScrollReveal type="words">Skills & Proficiency</ScrollReveal>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white mt-2">
+          <ScrollReveal type="words">Skills &amp; Proficiency</ScrollReveal>
         </h2>
         <p className="text-gray-400 mt-3 max-w-xl text-sm leading-relaxed">
           Rated honestly — no inflated percentages. Just real-world, battle-tested familiarity.
@@ -76,12 +81,12 @@ export const SkillsSection = () => {
       </div>
 
       {/* Level Legend */}
-      <div className="flex flex-wrap gap-3 mb-10">
+      <div className="flex flex-wrap gap-2 mb-8">
         {LEVEL_ORDER.map((level) => {
           const style = LEVEL_STYLES[level];
           return (
-            <div key={level} className={`flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-mono font-bold ${style.badge} ${style.text}`}>
-              <span className={`w-2 h-2 rounded-full ${style.dot}`} />
+            <div key={level} className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full border text-[10px] font-mono font-bold ${style.badge} ${style.text}`}>
+              <span className={`w-2 h-2 rounded-full flex-shrink-0 ${style.dot}`} />
               {level}
             </div>
           );
@@ -95,7 +100,7 @@ export const SkillsSection = () => {
             key={cat}
             onClick={() => setActiveCategory(cat)}
             data-cursor="pointer"
-            className={`px-4 py-1.5 rounded-full text-xs font-mono font-bold transition-all duration-300 ${
+            className={`px-3 py-1.5 rounded-full text-[11px] font-mono font-bold transition-all duration-300 ${
               activeCategory === cat
                 ? 'bg-accent text-dark-bg border border-accent shadow-md shadow-accent/20'
                 : 'bg-white/5 border border-dark-border text-gray-400 hover:text-white hover:border-white/20'
@@ -107,7 +112,7 @@ export const SkillsSection = () => {
       </div>
 
       {isLoading ? (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
           {Array.from({ length: 12 }).map((_, i) => (
             <div key={i} className="glass-panel rounded-2xl h-20 animate-pulse" />
           ))}
@@ -121,7 +126,8 @@ export const SkillsSection = () => {
                 {category}
                 <span className="h-px flex-1 bg-white/5" />
               </h3>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+              {/* On mobile: single column for long names, 2-col for short */}
+              <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
                 {catSkills.map((skill, idx) => (
                   <SkillPill key={skill.id} skill={skill} delay={idx * 0.05} />
                 ))}
@@ -130,7 +136,7 @@ export const SkillsSection = () => {
           ))}
         </div>
       ) : (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+        <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
           {filtered.map((skill, idx) => (
             <SkillPill key={skill.id} skill={skill} delay={idx * 0.05} />
           ))}

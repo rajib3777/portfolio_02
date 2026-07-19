@@ -6,6 +6,14 @@ export default {
   ],
   darkMode: 'class',
   theme: {
+    screens: {
+      'xs': '480px',
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1280px',
+      '2xl': '1536px',
+    },
     extend: {
       colors: {
         accent: 'var(--accent-color)',
@@ -25,6 +33,7 @@ export default {
       animation: {
         'grain': 'grain 8s steps(10) infinite',
         'drift': 'drift 20s ease-in-out infinite',
+        'spin-slow': 'spin 6s linear infinite',
       },
       keyframes: {
         grain: {
